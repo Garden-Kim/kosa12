@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="qnaUpdate" method="post">
+<input type="hidden" name="qnaNum" th:value="${dto.qnaNum}">
+제목 : <input type="text" name="qnaSubject" th:value="${dto.qnaSubject}"> <br>
+내용 : <textarea rows="6" cols="30" name="qnaContent">[[${dto.qnaContent}]]</textarea><br>
+<input type="submit" value="QnA수정"> 
+
+</form>
+</body>
+</html>

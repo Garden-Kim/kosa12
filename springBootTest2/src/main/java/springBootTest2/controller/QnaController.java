@@ -11,6 +11,7 @@ import springBootTest2.command.QnaCommand;
 import springBootTest2.service.qna.QnaDeleteService;
 import springBootTest2.service.qna.QnaInfoSerivce;
 import springBootTest2.service.qna.QnaListService;
+import springBootTest2.service.qna.QnaUpdateService;
 import springBootTest2.service.qna.QnaWriteService;
 
 @Controller
@@ -24,6 +25,20 @@ public class QnaController {
 	QnaInfoSerivce qnaInfoService;
 	@Autowired
 	QnaDeleteService qnaDeleteService;
+	@Autowired
+	QnaUpdateService qnaUpdateService;
+	
+	@RequestMapping("qnaUpdate")
+	public String qnaUpdate(QnaCommand qnaCommand) {
+		qnaUpdateService.execute(qnaCommand);
+		return "redirect:qnaDetail?num="+qnaCommand.getQnaNum();
+	}
+	
+	@RequestMapping("qnaModify")
+	public String qnaModify(@RequestParam("num") Integer num, Model model) {
+		qnaInfoService.execute(num, model);
+		return "thymeleaf/qna/qnaModify";
+	}
 	
 	@RequestMapping("qnaDelete")
 	public String qnaDelete(@RequestParam("num") Integer num) {
@@ -45,7 +60,6 @@ public class QnaController {
 	
 	@RequestMapping("qnaWrite")
 	public String qnaForm() {
-		
 		return "thymeleaf/qna/qnaForm"; 
 	}
 	

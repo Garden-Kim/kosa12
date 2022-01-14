@@ -10,7 +10,7 @@
 제목 : [[${dto.qnaSubject }]]<br/>
 내용 : [[${dto.qnaContent}]]<br/>
 작성일 : <span th:text="${#dates.format(dto.qnaRegiDate, 'yyyy-MM-dd')}"/><br>
-<a href ="#">수정</a> |
+<a th:href ="@{qnaModify(num=${dto.qnaNum})}">수정</a> |
 <a th:href ="@{qnaDelete(num=${dto.qnaNum})}">삭제</a>
 <a href = "qnaList">QnA 리스트</a>
 </body>

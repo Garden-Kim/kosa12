@@ -40,4 +40,10 @@
 		where qna_num = #{qnaNum}
 	
 	</delete>
+	
+	<update id="qnaUpdate" parameterType="springBootTest2.domain.QnaDTO">
+		update qna
+		set QNA_SUBJECT = #{qnaSubject}, QNA_CONTENT = #{qnaContent} 
+		where qna_num = #{qnaNum}
+	</update>
 </mapper>
