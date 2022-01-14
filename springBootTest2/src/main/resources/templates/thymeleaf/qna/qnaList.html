@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+리스트임<br>
+<a href="qnaWrite">게시글작성하기</a>
+
+<table border=1 width="600px">
+	<tr><th>글번호</th><th>제목</th><th>조회수</th><th>작성일</th></tr>
+	<th:block th:each="dto : ${list}">
+		<tr>
+			<td><a th:href="@{qnaDetail(num=${dto.qnaNum})}">[[${dto.qnaNum }]]</a></td>
+			<td><a th:href="@{qnaDetail(num=${dto.qnaNum})}">[[${dto.qnaSubject }]]</a></td>
+			<td>[[${dto.visitCount }]]</td>
+			<td><span th:text="${#dates.format(dto.qnaRegiDate, 'yyyy-MM-dd')}"></span></td>
+		</tr>
+	</th:block>
+</table>
+</body>
+</html>
