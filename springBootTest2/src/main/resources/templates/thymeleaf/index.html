@@ -5,9 +5,50 @@
 <title>Insert title here</title>
 </head>
 <body>
-첫 페이지입니다.<br>
-<a href="/emp/employeeList">직원 리스트</a><br>
-<a href="/board/boardList">게시글 목록</a><br>
-<a href="/qna/qnaList">QnA 목록</a><br>
+	첫 페이지입니다.
+	<br>
+	<th:block th:if="${session.authInfo == null}">
+		<form action="loginPro" method="post" name="frm" id="frm">
+			<table>
+				<tr>
+					<td colspan="2"><input type="checkbox" value="autoLogin"
+						name="autoLogin">로그인 유지 | <input type="checkbox"
+						value="store" name="storeId">아이디 저장</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="id" placeholder="아이디입력">
+						<span th:if="${err_id != null}" th:text="${err_id}"
+						style="color: red"></span></td>
+					<td rowspan="2"><input type="image" width="50px" height="50px"
+						src="/static/images/img6.jpg" id="imgSubmit"></td>
+				</tr>
+				<tr>
+					<td><input type="password" name="pw" placeholder="비밀번호">
+						<span th:if="${err_pw != null}" th:text="${err_pw}"
+						style="color: red"></span></td>
+				</tr>
+				<tr>
+					<td colspan="2">아이디/비밀번호 찾기 | <a
+						href="/membership/memberAgree">회원가입</a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</th:block>
+	<a href="/board/boardList">게시글 목록</a>
+	<th:block th:if="${session.authInfo != null}">
+
+		<a href="/lib/libList">자료실</a> |
+		<a href="/qna/qnaList">QnA 목록</a> |
+		
+		<span th:switch="${session.authInfo.grade}"> <span
+			th:case="emp"> <a href="/mem/memberList">회원리스트</a> <a
+				href="/emp/employeeList">직원 리스트</a> <a href="/goods/goodsList">상품리스트</a>
+		<a href="/emplib/emplibList">직원 자료실</a>
+		</span> <span th:case="mem"> <a href="/membership/memInfo">내정보 보기</a>
+		</span>
+		</span>
+		<a href="/logout">로그아웃</a>
+	</th:block>
 </body>
 </html>
