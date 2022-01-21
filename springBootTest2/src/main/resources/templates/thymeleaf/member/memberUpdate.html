@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="memberUpdateOk" method="post" name="frm" id="frm">
+<input type="hidden" name="memNum" th:value="${dto.memNum}" readonly="readonly">
+고객이름 : <input type="text" name="memName" th:value="${dto.memName}"/><br>
+고객 생년월일 : <input type="date" name="memBirth" th:value="${#dates.format(dto.memBirth, 'yyyy-MM-dd')}"><br>
+고객 성별 : <input type="radio" name="memGender" value="F" th:checked="${dto.memGender=='F'}">여자
+		<input type="radio" name="memGender" value="M" th:checked="${dto.memGender=='M'}">남자<br>
+고객 가입일 : <input type="date" name="memRegiDate" th:value="${#dates.format(dto.memRegiDate, 'yyyy-MM-dd')}"><br>
+고객 아이디 : <input type="text" name="memId" th:value="${dto.memId}"><br>
+고객 연락처1 : <input type="tel" name="memPhone1" th:value="${dto.memPhone1}"><br>
+고객 연락처2 : <input type="tel" name="memPhone2" th:value="${dto.memPhone2}"><br>
+고객 주소 : <input type="text" name="memAddr" th:value="${dto.memAddr}"><br>
+고객 이메일 : <input type="email" name="memEmail" th:value="${dto.memEmail}"><br>
+<input type="submit" value="수정완료">
+
+</body>
+</html>

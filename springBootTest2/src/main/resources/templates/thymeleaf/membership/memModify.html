@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+멤버 수정 페이지<br/>
+<form action="memberModify" method="post" name="frm" id="frm">
+고객 번호 : <input type="text" th:value="${dto.memNum}" readonly="readonly"/> <br/>
+이름: <input type="text" name="memName" th:value="${dto.memName}"><br/>
+
+
+가입일: <input type="date" name="memRegiDate"  th:value="${#dates.format(dto.memRegiDate,'yyyy-MM-dd')}" readonly="readonly"> <br/>
+아이디: <input type="text" name="memId" th:value="${dto.memId}"> <br/>
+비밀번호: <input type="password" name="memPw" id ="namePw" > <br/>
+
+연락처1 :  <input type="tel" name="memPhone1" placeholder="031-1234-1234" th:value="${dto.memPhone1}"> <br/>
+연락처2 : <input type="tel" name="memPhone2" th:value="${dto.memPhone2}" >  <br/>
+주소: <input type="text" name="memAddr"  th:value="${dto.memAddr}">   <br/>
+고객 이메일: <input type="email" name="memEmail"  th:value="${dto.memEmail}">  <br/>
+성별 : <input type="radio" name="memGender" value="F"
+       th:checked="${dto.memGender=='F'}"/>여자
+       <input type="radio" name="memGender" value="M" th:checked="${dto.memGender=='M'}"/>남자 <br/>
+생년월일: <input type="date" name="memBirth" th:value="${#dates.format(dto.memBirth , 'yyyy-MM-dd')}" ><br/>
+<input type="submit" value="수정하기(PPT는 보노보노로)"/>
+</from> 
+</body>
+</html>

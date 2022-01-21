@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+회원 리스트 페이지.<br>
+<a href="memberRegist">회원등록</a>
+<table border=1>
+   <tr><td>번호</td><td>이름</td><td>아이디</td><td>가입일</td></tr>
+	<th:block th:each=" dto : ${list}">
+   <tr><td><a th:href="@{memberInfo(num=${dto.memNum})}">[[${dto.memNum }]]</a></td>
+      <td>[[${dto.memName }]]</td>
+      <td><a th:href="@{memberInfo(num=${dto.memNum})}">[[${dto.memId }]]</a></td>
+      <td><span th:text="${#dates.format(dto.memRegiDate,'yyyy-MM-dd')}"></span></td></tr>
+   </th:block>
+   </table>
+</body>
+</html>

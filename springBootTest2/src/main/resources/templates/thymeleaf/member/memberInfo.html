@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+상세정보.<br>
+고객이름 : [[${dto.memName}]]<br>
+고객 생년월일 : <span th:text="${#dates.format(dto.memBirth,'yyyy-MM-dd')}"></span><br>
+고객 성별 : <span th:if="${dto.memGender == 'M'}" th:text="남자"></span> 
+<span th:if="${dto.memGender == 'F'}" th:text="여자"></span><br>
+고객 아이디 : [[${dto.memId}]]<br>
+고객 연락처1 : [[${dto.memPhone1}]]<br>
+고객 연락처2 : [[${dto.memPhone2}]]<br>
+고객 주소 : [[${dto.memAddr}]]<br>
+고객 이메일 : [[${dto.memEmail}]]<br>
+
+<a th:href="@{memberUpdate(num=${dto.memNum})}">수정</a>|
+<a th:href="@{memberDelete(num=${dto.memNum})}">삭제</a>|
+<a href="memberList">리스트</a>
+</body>
+</html>

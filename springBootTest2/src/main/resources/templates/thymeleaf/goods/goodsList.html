@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>goodsList.jsp</title>
+</head>
+<body>
+<table border=1>
+	<tr><td>상품번호</td><td>이름</td><td>가격</td></tr>
+	
+<th:block th:each = "dto : ${list}">
+      <tr><td><!-- 스플릿과 반복문을 포함시킨 것 -->
+              
+      <a th:href="@{goodsInfo(num=${dto.goodsNum })}">[[${dto.goodsNum}]]</a><br/>
+      </td><td><a th:href="@{goodsInfo(num=${dto.goodsNum })}">[[${dto.goodsName }]]</a></td><td>[[${dto.goodsPrice }]]</td></tr>
+      
+      </th:block>
+</table>
+<br>
+<a href="goodsWirte">상품 등록</a>
+</body>
+</html>

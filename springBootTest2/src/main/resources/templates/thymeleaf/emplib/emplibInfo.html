@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script>
+$(function(){
+	$("#btn").click(function(){
+		location.href="emplibDetele?num=[[${dto.libNum}]]&libPw="+$("#libPw").val()
+	});
+});
+</script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+글쓴이 : [[${dto.libWriter}]]  || ip주소 : [[${dto.ipAddr}]]<br />
+제목 : [[${dto.libSubject}]] <br />
+내용 : [[${dto.libContent}]] <br>
+
+<form action="emplibModify" method="post">
+<input type="hidden" th:value="${dto.libNum}" name="libNum" id="libNum">
+비밀번호 : <input type="password" name="libPw" id="libPw"><br>
+<span th:if="${err_pw != null}" th:text="${err_pw}" style="color:red"></span>
+<br>
+<input type="submit" value="수정">
+<input type="button" value="삭제" id="btn">
+</form>
+</body>
+</html>

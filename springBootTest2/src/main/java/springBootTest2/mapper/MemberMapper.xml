@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+   "-//mybatis.org//DTO Mapper 3.0//EN"   
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springBootTest2.mapper.MemberMapper">
+
+<select id="selectAll" resultType="springBootTest2.domain.MemberDTO">
+	select   mem_Num memNum, mem_Name memName, MEM_REGI_DATE memRegiDate, MEM_ID memId, MEM_PW memPw, MEM_PHONE1 memPhone1, 
+         MEM_PHONE2 memPhone2, MEM_ADDR memAddr, MEM_EMAIL memEmail, MEM_GENDER memGender, MEM_BIRTH memBirth
+    from member     
+</select>
+
+<select id="selectNum" resultType="String">
+ select concat('kosa',nvl(max(substr(mem_num,5)),100000) + 1) from member
+</select>
+
+<insert id="memberInsert" parameterType="springBootTest2.domain.MemberDTO">
+   insert into member( MEM_NUM , MEM_NAME , MEM_REGI_DATE , MEM_ID , MEM_PW , MEM_PHONE1 , 
+         MEM_PHONE2, MEM_ADDR , MEM_EMAIL ,MEM_GENDER , MEM_BIRTH  )
+   values(#{memNum}, #{memName}, #{memRegiDate}, #{memId}, #{memPw},
+   		 #{memPhone1}, #{memPhone2}, #{memAddr}, #{memEmail}, #{memGender}, #{memBirth})
+</insert>
+
+<select id="selectOne" resultType="springBootTest2.domain.MemberDTO" parameterType="String">
+	select   mem_Num memNum, mem_Name memName, MEM_REGI_DATE memRegiDate, MEM_ID memId, MEM_PW memPw, MEM_PHONE1 memPhone1, 
+         MEM_PHONE2 memPhone2, MEM_ADDR memAddr, MEM_EMAIL memEmail, MEM_GENDER memGender, MEM_BIRTH memBirth
+    from member
+    where mem_Num = #{num}
+</select>
+
+
+
+<delete id="memberDelete" parameterType="String">
+	delete
+	from member
+	where mem_num = #{num}
+</delete>
+
+<update id="memberUpdate" parameterType="springBootTest2.domain.MemberDTO">
+	update member 
+	set mem_name = #{memName}, mem_phone1 = #{memPhone1}, mem_phone2 = #{memPhone2},
+		mem_addr = #{memAddr}, mem_email = #{memEmail}, mem_gender = #{memGender}, mem_birth = #{memBirth}
+	where mem_num = #{memNum}
+</update>
+
+</mapper>

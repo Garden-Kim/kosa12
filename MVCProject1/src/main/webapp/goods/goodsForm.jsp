@@ -9,7 +9,7 @@
 <body>
 <form action="goodsRegist.gd" method="post" name="frm" id="frm" enctype="multipart/form-data">
 제품등록 페이지입니다.<br>
-제품번호 : <input type="text" name="goodsNum" readonly="readonly" value="kosa${goodsNum }">자동부여<br>
+제품번호 : <input type="text" name="goodsNum" readonly="readonly" th:value="kosa${goodsNum }">자동부여<br>
 제품이름 : <input type="text" name="goodsName"><br>
 제품가격 : <input type="number" name="goodsPrice" min=1000 value="1000"><br>
 제조일 : <input type="date" name="goodsDate"><br>
