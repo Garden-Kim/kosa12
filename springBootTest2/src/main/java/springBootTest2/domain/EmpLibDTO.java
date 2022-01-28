@@ -14,5 +14,7 @@ public class EmpLibDTO {
 	String empNum;
 	String ipAddr;
 	String libPw;
-
+	String originalFileName;
+	String storeFileName;
+	String fileSize;
 }

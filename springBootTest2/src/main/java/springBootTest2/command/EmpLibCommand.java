@@ -11,5 +11,6 @@ public class EmpLibCommand {
 	String libContent;
 	String libPw;
 	String libNum;
+	MultipartFile [] report; // input type="file"
 
 }

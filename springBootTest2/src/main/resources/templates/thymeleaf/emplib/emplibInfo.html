@@ -16,6 +16,21 @@ $(function(){
 글쓴이 : [[${dto.libWriter}]]  || ip주소 : [[${dto.ipAddr}]]<br />
 제목 : [[${dto.libSubject}]] <br />
 내용 : [[${dto.libContent}]] <br>
+파일:<br /><!-- img1.jpg`img2.jpg`img3.jpg` -->
+<div th:each="file, idx : ${#strings.arraySplit(dto.originalFileName,'`')}" >
+	<!-- 
+	<a th:href="|/empLib/${#strings.arraySplit(dto.storeFileName,'`')[idx.index]}|">
+		[[${file }]]
+	</a>  -->
+	<a th:href="@{
+				  fileDown(sfile=${#strings.arraySplit(dto.storeFileName,'`')[idx.index]},
+	                  ofile=${file })
+	              }">[[${file }]]</a> |
+	[[${#numbers.formatInteger(
+		#strings.arraySplit(dto.fileSize,'`')[idx.index],0,'COMMA'
+		)
+		}]] Byte
+</div>
 
 <form action="emplibModify" method="post">
 <input type="hidden" th:value="${dto.libNum}" name="libNum" id="libNum">

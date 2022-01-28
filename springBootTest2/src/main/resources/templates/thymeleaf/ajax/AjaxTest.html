@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+   function test(num) {
+      if(num==1){
+         op1.style.display="";
+         op2.style.display="none";
+         op3.style.display="none";
+      }else if(num==2){
+         op1.style.display="none";
+         op2.style.display="";
+         op3.style.display="none";
+      }else if(num==3){
+         op1.style.display="none";
+         op2.style.display="none";
+         op3.style.display="";
+      }
+      
+   }
+
+</script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<ul>
+	<li onclick="test(1)">tv</li>
+	<li onclick="test(2)">맛집</li>
+	<li onclick="test(3)">뷰티</li>
+</ul>
+<div id="op1">
+TV
+</div>
+
+<div id="op2" style="display: none">
+맛집
+</div>
+<div id="op3" style="display: none">
+뷰티
+</div>
+
+</body>
+</html>

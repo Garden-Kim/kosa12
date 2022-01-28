@@ -5,22 +5,30 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="springBootTest2.mapper.EmpLibMapper">
+
+<sql id="baseColumns">
+lib_num libNum, lib_writer libWriter, lib_subject libSubject,
+lib_content libContent,emp_num empNum,ip_addr ipAddr, lib_pw libPw,
+ORIGINAL_FILE_NAME originalFileName,STORE_FILE_NAME storeFileName ,
+FILE_SIZE fileSize
+</sql>
+
 <insert id="empLibInsert" parameterType="springBootTest2.domain.EmpLibDTO">
-	insert into emp_library(LIB_NUM,LIB_WRITER,LIB_SUBJECT,LIB_CONTENT,EMP_NUM,IP_ADDR,LIB_PW)
-	values(seq_num.nextval,#{libWriter}, #{libSubject}, #{libContent}, #{empNum}, #{ipAddr}, #{libPw})
+	insert into emp_library(LIB_NUM,LIB_WRITER,LIB_SUBJECT,LIB_CONTENT,EMP_NUM,IP_ADDR,LIB_PW,
+							ORIGINAL_FILE_NAME, STORE_FILE_NAME, FILE_SIZE) 
+	values(seq_num.nextval,#{libWriter}, #{libSubject}, #{libContent}, #{empNum}, #{ipAddr}, #{libPw},
+							#{originalFileName},#{storeFileName}, #{fileSize})
 
 </insert>
 
 <select id="selectAll" resultType="springBootTest2.domain.EmpLibDTO">
-	select LIB_NUM libNum, LIB_WRITER libWriter,LIB_SUBJECT libSubject,LIB_CONTENT libContent,
-			EMP_NUM empNum,IP_ADDR ipAddr,LIB_PW libPw
+	select <include refid="baseColumns" />
 	from emp_library
 	order by lib_num
 </select>
 
 <select id="selectOne" resultType="springBootTest2.domain.EmpLibDTO" parameterType="string">
-	select LIB_NUM libNum, LIB_WRITER libWriter,LIB_SUBJECT libSubject,LIB_CONTENT libContent,
-			EMP_NUM empNum,IP_ADDR ipAddr,LIB_PW libPw
+	select <include refid="baseColumns" />
 	from emp_library
 	where lib_num = #{num}
 </select>
