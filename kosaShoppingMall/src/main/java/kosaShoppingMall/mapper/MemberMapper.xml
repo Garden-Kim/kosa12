@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org//DTO Mapper 3.0//EN"	
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kosaShoppingMall.mapper.MemberMapper">
+	
+	
+	<delete id="memberDelete" parameterType="string">
+		delete from member
+		where member_num = #{memberNum}
+		
+	</delete>
+	
+	<update id="memberUpdate" parameterType="memberDTO">
+		update member
+		set MEMBER_NUM =#{memberNum} , MEMBER_ID = #{memberId}  , MEMBER_PW = #{memberPw}  , MEMBER_NAME = #{memberName} 
+		, MEMBER_ADDR  = #{memberAddr}, MEMBER_REGIST = #{memberRegist} ,
+		 GENDER = #{gender} , MEMBER_PHONE  = #{memberPhone}, MEMBER_BIRTH  = #{memberBirth}, MEMBER_EMAIL=#{memberEmail}
+		 where member_num =#{memberNum} 
+	</update>
+	
+	
+	<select id="memberSelectOne" resultType="memberDTO" parameterType="string">
+		select MEMBER_NUM  memberNum , MEMBER_ID  memberId , MEMBER_PW  memberPw , MEMBER_NAME memberName 
+		, MEMBER_ADDR  memberAddr, MEMBER_REGIST memberRegist , 
+		GENDER  Gender, MEMBER_PHONE  memberPhone, MEMBER_BIRTH  memberBirth, MEMBER_EMAIL memberEmail
+		from member
+		where member_num = #{memberNum}
+	
+	</select>
+	
+
+	<select id="memberSelectAll" resultType="memberDTO">
+		select MEMBER_NUM  memberNum , MEMBER_ID  memberId , MEMBER_PW  memberPw , MEMBER_NAME memberName 
+		, MEMBER_ADDR  memberAddr, MEMBER_REGIST memberRegist , 
+		GENDER  Gender, MEMBER_PHONE  memberPhone, MEMBER_BIRTH  memberBirth, MEMBER_EMAIL memberEmail
+		from member
+		order by member_num
+	</select>
+
+	<insert id="memberInsert" parameterType="memberDTO">
+		insert into member (MEMBER_NUM , MEMBER_ID , MEMBER_PW , MEMBER_NAME , MEMBER_ADDR , MEMBER_REGIST , 
+		GENDER , MEMBER_PHONE , MEMBER_BIRTH , MEMBER_EMAIL)
+		values(  #{memberNum}, 
+		#{memberId},#{memberPw},#{memberName},
+		#{memberAddr},#{memberRegist},#{gender}
+		,#{memberPhone},#{memberBirth},#{memberEmail}
+		)
+	
+	</insert>
+	
+	<select id="memberMaxNum" resultType="String">
+		select  concat('kosa',nvl(max(substr(member_num ,5)),100000)+1)
+		from member
+	</select>
+</mapper>
+
+
+

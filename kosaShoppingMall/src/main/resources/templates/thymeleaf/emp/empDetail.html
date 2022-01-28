@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+<script type="text/javascript">
+
+
+ $(function() {
+
+	$("#empPwChange").click(function() {
+		location.href="empPwChange?empId=[[${employeeCommand.empId}]]&empPw="+$("#empPw").val()
+				
+	});
+	
+	
+	$("#delete").click(function() {
+		 
+		$.ajax({
+			type : "post",
+			url : "empDelete",
+			data : {
+				"empId" : "[[${employeeCommand.empId}]]",
+				"empPw" : $("#empPw").val()
+			},
+			dataType : "text",
+			//데이터가 정상적으로 넘어갔을때
+			//result는 정상적으로 값이 넘어갔을때
+			success : function(result) {
+				alert(result)
+				if (result.trim() == '1') {
+					alert("직원이 정상적으로 삭제 되었습니다.");
+					location.href = "empList";
+				} else {
+					alert("직원이 삭제되지 않았습니다.");
+					$("#err_pw").html("비번틀려씀");
+					return false;
+				}
+			},
+			error : function() {
+				alert("코드 레드 코드레드 위험해요");
+				return;
+
+			}
+		});
+	});
+	
+});
+ 
+	/*
+ $("#delete").click(function() {
+	location.href="empDelete?empId=[[${employeeCommand.empId}]]&empPw="+$("#empPw").val()
+			
+});
+ */
+ 
+ 
+</script>
+</head>
+<body>
+상세페이지 
+보노보노빔...<br>
+
+
+아이디 : [[${employeeCommand.empId}]] <br/>
+이름 :  [[${employeeCommand.empName}]] <br/>
+주소 : [[${employeeCommand.empAddr}]] <br/>
+연락처 : [[${employeeCommand.empPhone}]] <br/>
+<form action ="empModify" method="post">
+<input type="hidden" name="empId" th:value="${employeeCommand.empId}">
+비밀번호 : <input type="password" name="empPw" required="required" id="empPw"> <br/>
+<span id="err_pw" style="color:red"></span>
+<input type="submit" value="수정페이지">
+<input type="button" value="삭제할게요" id="delete"> 
+<input type="button" value="비밀번호 변경" id="empPwChange"> 
+</form>
+</body>
+</html>

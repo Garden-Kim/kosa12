@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+비밀번호 변경
+<br/><br/>
+<form action="empPwChangeOk">
+<input type="hidden" name="empId" th:value="${employeeCommand.empId}">
+비밀번호 : <input type="password" name="empPw" required="required" id="empPw"> <br/><br/>
+비밀번호 확인 : <input type="password" name="empPwCon" required="required"> <br/>
+<span th:text="${err_pw}" style="color:red"></span><br/>
+<input type="submit" value="비밀번호 변경">
+</form>
+</body>
+</html>

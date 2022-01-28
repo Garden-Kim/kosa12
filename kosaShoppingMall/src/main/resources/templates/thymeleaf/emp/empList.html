@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="empJoin">직원등록</a>
+<table border=1>
+	<tr><td>아이디</td><td>이름</td><td>주소</td></tr>
+	<th:block th:each="dto : ${list}">
+		<tr><td><a th:href="@{empDetail(empId=${dto.empId})}">[[${dto.empId}]]</a></td>
+			<td>[[${dto.empName}]]</td>
+			<td>[[${dto.empAddr}]]</td>
+		</tr>
+		
+	</th:block>
+</table>
+</body>
+</html>
